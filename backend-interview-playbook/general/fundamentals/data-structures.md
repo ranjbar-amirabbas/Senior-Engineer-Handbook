@@ -4,12 +4,15 @@
 
 Backend engineers do not need algorithm competition depth for most roles, but they do need practical fluency with the data structures that affect runtime behavior, memory usage, and API choices.
 
+If you want a deeper treatment of complexity analysis, read [big-o.md](big-o.md) alongside this file.
+
 ## Core Concepts
 
 - Arrays and lists provide efficient indexed access and simple sequential storage.
 - Hash-based structures optimize lookup but trade away ordering.
 - Trees and heaps are useful when ordered operations or prioritized retrieval matter.
 - Choosing the wrong structure can create hidden performance costs in otherwise simple code.
+- Complexity matters most when the chosen structure does not match the workload.
 
 ## Why It Matters In Real Systems
 
@@ -18,6 +21,8 @@ Data structures influence throughput, latency, and memory use inside services, b
 ## Practical Example
 
 A deduplication step that repeatedly uses linear scans over a list may be acceptable for tiny batches and wasteful for large ones. A `HashSet<T>` may be the right structure when uniqueness lookup is the dominant operation.
+
+That is a classic case where Big O matters in backend code: repeated `O(n)` membership checks inside another loop can quietly turn into `O(n^2)` behavior.
 
 ## Common Pitfalls
 
@@ -33,5 +38,6 @@ A deduplication step that repeatedly uses linear scans over a list may be accept
 
 ## Related Topics
 
+- [big-o.md](big-o.md)
 - [testing-fundamentals.md](testing-fundamentals.md)
 - [../interview/data-structures.md](../interview/data-structures.md)
